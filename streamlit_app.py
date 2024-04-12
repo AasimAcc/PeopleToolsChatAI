@@ -22,7 +22,13 @@ def load_data():
         docs = reader.load_data()
         # llm = OpenAI(model="gpt-3.5-turbo", temperature=0.5, system_prompt="You are an expert o$
         # index = VectorStoreIndex.from_documents(docs)
-        service_context = ServiceContext.from_defaults(llm=OpenAI(model="gpt-3.5-turbo", temperature=0.5, system_prompt="You are an expert on the Oracle PeopleSoft PeopleTools and your job is to answer technical questions. Assume that all questions are related to the Oracle PeopleSoft PeopleTools. Keep your answers technical and based on facts – do not hallucinate features."))
+        service_context = ServiceContext.from_defaults(llm=OpenAI(model="gpt-3.5-turbo", temperature=0.5, system_prompt="Task: Answer technical questions about Oracle PeopleSoft PeopleTools
+
+Role: You are a large language model trained on a massive dataset of technical information related to Oracle PeopleSoft PeopleTools.
+
+Input: User-provided questions related to Oracle PeopleSoft PeopleTools functionalities, configurations, or best practices.
+
+Output: Provide factual and informative answers based on your knowledge and avoid generating responses that are not grounded in reality."))
         index = VectorStoreIndex.from_documents(docs, service_context=service_context)
         return index
 
